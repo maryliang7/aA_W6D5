@@ -1,0 +1,50 @@
+<% if type == :new %>
+  <% action_url = cats_url %>
+  <% button_text = 'Add Cat' %>
+<% else %>
+  <% action_url = cat_url(@cat) %>
+  <% button_text = 'Edit Cat' %>
+<% end %>
+
+
+<form action="<%= action_url %>" method="post">
+ <input type="hidden" name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+    <% if type == :edit %>
+      <input type="hidden" name="_method" value="patch">
+    <% end %>
+<label for ="name">Name:
+  <input type="text" id="name" name="cat[name]"
+    value="<%= cat.name %>">
+</label>
+<br>
+<label for ="color">Color:
+  <select>
+    <option disabled value selected> -- select a color -- </option>
+    <% $COLORS.each do |color|  %>
+    <option <%= cat.color == color ? "selected" : "" %> value="<% cat.color %>">
+      <%= color %> </option>
+    <% end %>
+  </select>
+</label>
+<br>
+<label for ="birth_date">Birthday:
+  <input type="date" id="birth_date" name="cat[birth_date]"
+    value="<%= cat.birth_date %>">
+</label>
+<br>
+<label for ="sex">Sex:
+  <input type="radio" id="sex" name="cat[sex]" value="M"> Male 
+  <input type="radio" id="sex" name="cat[sex]" value="F"> Female
+</label>
+<br>
+<label for ="description">Description:
+  <textarea id="description" name="cat[description]"
+    value="<%= cat.description %>">Describe your cat!
+  </textarea>
+</label>
+<br>
+
+  <input type="submit" value="<%= button_text %>">
+</form>

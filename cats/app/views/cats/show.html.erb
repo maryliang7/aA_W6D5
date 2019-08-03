@@ -1,0 +1,22 @@
+
+<table>
+  <caption>Our Cats</caption>
+
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Color</th>
+    <th scope="col">Age</th>
+    <th scope="col">Sex</th>
+    <th scope="col">Description</th>
+  </tr>
+    <th scope="row"><%=@cat.name %> </th>
+    <td> <%= @cat.color%></td>
+    <td> <%= @cat.age%></td>
+    <td> <%= @cat.sex%></td>
+    <td> <%= @cat.description%></td>
+  <tr>
+    <% %>
+  </tr>
+</table>
+
+<a href="<%= edit_cat_url(@cat) %>">Edit Cat</a>
